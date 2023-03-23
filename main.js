@@ -1,47 +1,47 @@
 // Escribe una función que devuelva el último elemento de un array. Además, debe tener otro parámetro opcional que, en caso de pasarse, devolvería esa cantidad de números empezando por el final. Es decir, si mi array es [1, 2, 3, 4, 5] y yo le paso el 3 como parámetro, debe devolverme [3, 4, 5] y, si no le paso nada como parámetro, debe devolverme solo el 5.
 
-const last = (array, n) => {
+const ultimosNumeros = (array, n) => {
   if (n == null) return array[array.length - 1];
   return array.slice(Math.max(array.length - n, 0));
 };
 
-console.log(last([7, 9, 0, -2]));
-console.log(last([7, 9, 0, -2], 3));
-console.log(last([7, 9, 0, -2], 6));
+console.log(ultimosNumeros([7, 9, 0, -2]));
+console.log(ultimosNumeros([7, 9, 0, -2], 3));
+console.log(ultimosNumeros([7, 9, 0, -2], 6));
 
 // Escribe una función que, dado un array de números, devuelva una string con todos esos números e inserte guiones entre los números pares. Es decir, dado el array [0, 2, 3, 4, 6, 7, 8], me devolvería “0 2 3 4-6 7 8”
 
-let numbers = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 14, 15];
-let result = [];
+let numeros = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 14, 15];
+let resultado = [];
 
-for (let i = 1; i < numbers.length; i++) {
-  if (numbers[i - 1] % 2 === 0 && numbers[i] % 2 === 0) {
-    result.push("-", numbers[i]);
+for (let i = 1; i < numeros.length; i++) {
+  if (numeros[i - 1] % 2 === 0 && numeros[i] % 2 === 0) {
+    resultado.push("-", numeros[i]);
   } else {
-    result.push(numbers[i]);
+    resultado.push(numeros[i]);
   }
 }
-console.log(result.join(" "));
+console.log(resultado.join(" "));
 
 // Dado un array con elementos repetidos, determina qué elemento es el más frecuente y cuántas veces se ha repetido
 
 const arr1 = [3, "a", "a", "a", "a", 2, 3, "a", 3, "a", 2, 4, 9, 3];
-let mostFrequent = 1;
-let amount = 0;
+let masFrecuente = 1;
+let cantidad = 0;
 let item;
 for (let i = 0; i < arr1.length; i++) {
   for (let j = i; j < arr1.length; j++) {
     if (arr1[i] == arr1[j]) {
-      amount++;
+      cantidad++;
     }
-    if (mostFrequent < amount) {
-      mostFrequent = amount;
+    if (masFrecuente < cantidad) {
+      masFrecuente = cantidad;
       item = arr1[i];
     }
   }
-  amount = 0;
+  cantidad = 0;
 }
-console.log(`${item} ( ${mostFrequent} veces ) `);
+console.log(`${item} ( ${masFrecuente} veces ) `);
 
 // Dada una string, crea una función que cambie todas sus mayúsculas a minúsculas y todas sus minúsculas a mayúsculas y devuelva una nueva string.
 
@@ -87,21 +87,21 @@ for (let i = 0; i < a.length; i++) {
 
 // Escribe una función que devuelva los años bisiestos en cierto rango de años.
 
-function leap_year_range(st_year, end_year) {
-  const year_range = [];
-  for (let i = st_year; i <= end_year; i++) {
-    year_range.push(i);
+function rangoAños(inicio, fin) {
+  const rango = [];
+  for (let i = inicio; i <= fin; i++) {
+    rango.push(i);
   }
-  const new_array = [];
+  const bisiestos = [];
 
-  year_range.forEach((year) => {
-    if (test_LeapYear(year)) new_array.push(year);
+  rango.forEach((year) => {
+    if (esBisiesto(year)) bisiestos.push(year);
   });
 
-  return new_array;
+  return bisiestos;
 }
 
-function test_LeapYear(year) {
+function esBisiesto(year) {
   if (
     (year % 4 === 0 && year % 100 !== 0) ||
     (year % 100 === 0 && year % 400 === 0)
@@ -112,24 +112,24 @@ function test_LeapYear(year) {
   }
 }
 
-console.log(leap_year_range(2000, 2012));
+console.log(rangoAños(2000, 2012));
 
 // Crea una función que, dados un array y uno de sus elementos, elimine ese elemento del array
 
 let array1 = [1, 2, 3, 4, 5, 6];
 
-const removeItemArray = (array, item) => {
+const quitarElementoArray = (array, item) => {
   array.splice(array.indexOf(item), 1);
   return array;
 };
 
-console.log(removeItemArray(array1, 3));
+console.log(quitarElementoArray(array1, 3));
 
 // Crea una función que, dados dos arrays, devuelva un único array con ambos arrays concatenados pero que elimine los elementos repetidos de los mismos.
 
 let array2 = [4, 5, 6, 7, 8, 9];
 
-const mergeArrays = (array1, array2) => {
+const unirArrays = (array1, array2) => {
   array1.map((numero) => {
     array2.map((numero2) => {
       if (numero === numero2) {
@@ -141,11 +141,11 @@ const mergeArrays = (array1, array2) => {
   return array1.concat(array2);
 };
 
-console.log(mergeArrays(array1, array2));
+console.log(unirArrays(array1, array2));
 
 // Crea una función que determine si un array contiene cierto elemento, pasando ambos como argumentos a la misma
 
-let contains = (array, element) => {
+let arrayContiene = (array, element) => {
   for (let i = 0; i < array.length; i++) {
     if (array[i] === element) {
       return true;
@@ -154,10 +154,10 @@ let contains = (array, element) => {
   return false;
 };
 
-console.log(contains([1, 2, 3, 4, 5, 6], 8));
+console.log(arrayContiene([1, 2, 3, 4, 5, 6], 8));
 // Escribe una función que rellene un array con un determinado número de elementos y pasa ambas cosas por parámetro. Es decir, la ejecución de rellenar(3, 4) sería [4, 4, 4]
 
-let fill = (quantity, element) => {
+let rellenar = (quantity, element) => {
   let array = [];
   for (let i = 0; i < quantity; i++) {
     array.push(element);
@@ -165,39 +165,41 @@ let fill = (quantity, element) => {
   return array;
 };
 
-console.log(fill(3, 4));
+console.log(rellenar(3, 4));
 
 // Escribe una función para intercambiar las posiciones de dos elementos en un array.
 
-let move = (array, initialPos, finalPos) => {
+let intercambiarElementos = (array, initialPos, finalPos) => {
   let placeholder = array[finalPos];
   array[finalPos] = array[initialPos];
   array[initialPos] = placeholder;
   return array;
 };
-console.log(move([1, 2, 5], 0, 2));
+console.log(intercambiarElementos([1, 2, 5], 0, 2));
 
 // Escribe una función que genere un array de números y pásale por parámetro el número inicial y el largo del array. El array resultante debe ir sumando de uno en uno hasta alcanzar el largo deseado.
 
-let generate = (initialNumber, length) => {
+let generarArray = (initialNumber, length) => {
   let array = [];
+  //   MANERA 1
   // for (let i = initialNumber; i < length + initialNumber; i++) {
   //   array.push(i);
   // }
-  for(let i = 0; i < length; i++) {
-    array.push(initialNumber)
-    initialNumber++
+  //   MANERA 2
+  for (let i = 0; i < length; i++) {
+    array.push(initialNumber);
+    initialNumber++;
   }
   return array;
 };
 
-console.log(generate(20, 35));
+console.log(generarArray(20, 35));
 
 // Escribe una función que, al pasarle un array como argumento, determine qué elementos de ese array son números y devuelva la suma de los mismos.
 
-let arrayMixed = [2, "11", 3, "a2", false, 5, 7, 1];
+let arrayMezclado = [2, "11", 3, "a2", false, 5, 7, 1];
 
-const sumNumbers = (array) => {
+const sumarNumeros = (array) => {
   let sum = 0;
   array.map((element) => {
     if (typeof element === "number") {
@@ -207,59 +209,59 @@ const sumNumbers = (array) => {
   return sum;
 };
 
-console.log(sumNumbers(arrayMixed));
+console.log(sumarNumeros(arrayMezclado));
 
 // Escribe una función que determine la palabra más larga de una string
 
-const longestWord = (string) => {
+const palabraMasLarga = (string) => {
   let array = string.split(" ");
-  let longest = array[0];
+  let larga = array[0];
 
-  array.map((element) => {
-    if (element.length > longest.length) {
-      longest = element;
+  array.map((elemento) => {
+    if (elemento.length > larga.length) {
+      larga = elemento;
     }
   });
-  return longest;
+  return larga;
 };
 
-console.log(longestWord("Hola esto es una prueba"));
+console.log(palabraMasLarga("Hola esto es una prueba"));
 
 // Crea una función que, dada una string, cuente cuántas vocales hay en la misma y devuelva el resultado
 
-const countVowels = (string) => {
-  let vowels = ["a", "e", "i", "o", "u"];
+const contarVocales = (string) => {
+  let vocales = ["a", "e", "i", "o", "u"];
   let array = [...string];
-  let sum = 0;
+  let suma = 0;
   for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < vowels.length; j++) {
-      if (array[i].toLowerCase() === vowels[j]) {
-        sum++;
+    for (let j = 0; j < vocales.length; j++) {
+      if (array[i].toLowerCase() === vocales[j]) {
+        suma++;
       }
     }
   }
 
-  return sum;
+  return suma;
 };
 
-console.log(countVowels("HOla que tal AAa"));
+console.log(contarVocales("HOla que tal AAa"));
 
 // Crea una función que genere una contraseña aleatoria. Debes pasar por parámetro la cantidad de caracteres que quieres que tenga la contraseña.
 
-const generatePassword = (length) => {
-  let possibilities =
+const generarContraseña = (length) => {
+  let posibilidades =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let password = "";
+  let contrasena = "";
   for (let i = 0; i < length; i++) {
-    password += possibilities.charAt(
-      Math.round(Math.random() * possibilities.length)
+    contrasena += posibilidades.charAt(
+      Math.round(Math.random() * posibilidades.length)
     );
   }
 
-  return password;
+  return contrasena;
 };
 
-console.log(generatePassword(5));
+console.log(generarContraseña(5));
 
 // Crea una función que determine cuántas propiedades tiene un objeto
 
@@ -270,15 +272,15 @@ let testObject = {
   prop4: 4,
 };
 
-const howManyProperties = (object) => {
-  let amount = 0;
+const cuantasPropiedades = (object) => {
+  let cantidad = 0;
   for (const property in object) {
-    amount++;
+    cantidad++;
   }
-  return amount;
+  return cantidad;
 };
 
-console.log(howManyProperties(testObject));
+console.log(cuantasPropiedades(testObject));
 
 // Crea una función reloj que vaya desde las 23:58:00 hasta las 00:00:00 y saque por consola cada segundo y minuto entre ambas.
 
@@ -314,7 +316,7 @@ const reloj = () => {
 
 // Escribe una función que compruebe si un objeto tiene determinada propiedad
 
-const hasProperty = (object, property) => {
+const tienePropiedad = (object, property) => {
   for (const key in object) {
     if (key === property) {
       return true;
@@ -323,41 +325,41 @@ const hasProperty = (object, property) => {
   return false;
 };
 
-console.log(hasProperty(testObject, "prop7"));
+console.log(tienePropiedad(testObject, "prop7"));
 
 // Escribe una función que sume todos sus argumentos, independientemente de cuántos sean
 
-let sum = (...args) => {
-  if(args.length < 2){
-    return 'I need at least two numbers to sum'
+let sumaMuchos = (...args) => {
+  if (args.length < 2) {
+    return "Necesito por lo menos dos números";
   } else {
-    let sum = 0;
-    args.map(arg => sum += arg)
-    return sum
+    let suma = 0;
+    args.map((arg) => (suma += arg));
+    return suma;
   }
-}
+};
 
-console.log(sum(1, 2, 3, 4, 5, 6))
+console.log(sumaMuchos(1, 2, 3, 4));
 
 // Escribe una función que me diga si un alumno está aprobado o no, a la cual puedo pasar cualquier cantidad de notas como parámetro
 
 let aprobado = (...notas) => {
-  let sumaNota = 0
-  notas.map(nota => sumaNota += nota)
-  let media = sumaNota / notas.length
+  let sumaNota = 0;
+  notas.map((nota) => (sumaNota += nota));
+  let media = sumaNota / notas.length;
 
-  if(media >= 5){
-    return 'Aprobado'
+  if (media >= 5) {
+    return "Aprobado";
   } else {
-    return 'Suspenso'
+    return "Suspenso";
   }
-}
+};
 
-console.log(aprobado(4, 5, 6, 7, 2))
+console.log(aprobado(4, 5, 6, 7, 2));
 
 // Crea dos arrays de objetos. El primero debe contener los nombres y apellidos de por lo menos tres personas. El segundo debe contener otros datos de esas mismas personas, como su dirección y su número de teléfono. Utiliza una función para combinar ambos arrays y obtener un array nuevo en que cada objeto contiene toda la información de cada persona.
 
-let arrayNames = [
+let arrayNombres = [
   {
     name: "Mara",
     surname: "Scampini",
@@ -368,47 +370,44 @@ let arrayNames = [
   },
   {
     name: "Pau",
-    surname: "Cervera",
+    surname: "Martínez",
   },
 ];
 
-let arraySurnames = [
+let arrayEdades = [
   {
-    age: 30,
+    edad: 30,
   },
   {
-    age: 35,
+    edad: 35,
   },
   {
-    age: 25,
+    edad: 25,
   },
 ];
 
-let arrayFullNames = [];
+let arrayPersonas = [];
 
-const addProperty = (array1, array2, combined) => {
+const anadirPropiedad = (array1, array2, combinado) => {
   for (let i = 0; i < array1.length; i++) {
-    combined.push({ ...array1[i], ...array2[i] });
+    combinado.push({ ...array1[i], ...array2[i] });
   }
-  return combined;
+  return combinado;
 };
 
-let combined = addProperty(arrayNames, arraySurnames, arrayFullNames);
+anadirPropiedad(arrayNombres, arrayEdades, arrayPersonas);
 
-console.log(combined)
+console.log(arrayPersonas);
 
 // Dado el objeto combinado del ejercicio anterior, crea una función que saque cada uno de los objetos excluyendo la edad de la persona. Es decir, debo ver todas las propiedades de cada objeto menos la edad. Hazlo utilizando el operador rest.
 
-const excludeAge = (array) => {
+const quitarEdad = (array) => {
+  let personasSinEdad = [];
   array.map((object) => {
-    let { age, ...noAge } = object;
-    console.log(noAge);
-  })
-}
+    let { edad, ...noEdad } = object;
+    personasSinEdad.push(noEdad);
+  });
+  return personasSinEdad;
+};
 
-excludeAge(combined)
-
-combined.map((object) => {
-  let { age, ...noAge } = object;
-  console.log(noAge);
-});
+console.log(quitarEdad(arrayPersonas));
